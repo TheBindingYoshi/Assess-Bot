@@ -8,7 +8,7 @@ client.on("messageUpdate", async(oldMessage, newMessage) =>{
     if(oldMessage.content === newMessage.content){
         return;
     }
-    var logchannel= client.channels.get("592961394677252097"); 
+    var logchannel= client.channels.get("593332819904823302"); 
     let logembed = new Discord.RichEmbed()
     .setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
     .setThumbnail(oldMessage.author.avatarURL)
@@ -20,7 +20,17 @@ client.on("messageUpdate", async(oldMessage, newMessage) =>{
     logchannel.send(logembed)
 })
 
-
+client.on("messageDelete", async message => {
+    var logchannel = client.channels.get("593332819904823302");
+    let logembed = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.avatarURL)
+    .setThumbnail(message.author.avatarURL)
+    .setColor("PURPLE")
+    .setDescription("This Message Has Been Deleted")
+    .addField("Message", message.content, true)
+    .setTimestamp()
+    logchannel.send(logembed)
+})
 
 client.on('message',async message => {
     if(message.content.startsWith(`${prefix}createchannel announcements`)) {
@@ -34,12 +44,12 @@ client.on('message',async message => {
 })
 
 client.on('message',async message => {
-    if(message.content.startsWith(`${prefix}createchannel log channel edits`)) {
+    if(message.content.startsWith(`${prefix}createchannel log channel`)) {
         const args = message.content.slice(15);
         if(!message.member.roles.find(r => r.name === "Staff"))
         return;
         message.guild.createChannel(`${args}`).then(channel => {
-            channel.setTopic('for logging edits')
+            channel.setTopic('where Assess Bot logs Edited and Deleted Messages')
         })
     }
 })
@@ -66,16 +76,5 @@ client.on('message',async message => {
     }
 })
 
-
-client.on('message',async message => {
-    if(message.content.startsWith(`${prefix}createchannel log channel deletion`)) {
-        const args = message.content.slice(15);
-        if(!message.member.roles.find(r => r.name === "Staff"))
-        return;
-        message.guild.createChannel(`${args}`).then(channel => {
-            channel.setTopic('Were assess bot logs deleted messages')
-        })
-    }
-})
 
 client.login(token);
