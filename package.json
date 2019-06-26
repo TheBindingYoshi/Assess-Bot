@@ -1,0 +1,22 @@
+{
+  "name": "assess-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBindingYoshi/Assess-Bot.git"
+  },
+  "author": "Yoshi and bobopop787",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheBindingYoshi/Assess-Bot/issues"
+  },
+  "homepage": "https://github.com/TheBindingYoshi/Assess-Bot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
